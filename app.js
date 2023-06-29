@@ -4,6 +4,12 @@ const app = Vue.createApp({
     data() {
         return {
             showText: true,
+            books: [
+                {title: 'Harry Potter', author: 'Rowling'},
+                {title: 'Hearts in Atlantis', author: 'King'},
+                {title: 'Yellow Flowers on Green Grass', author: 'Gap Anh'}
+            ],
+            
             title: 'Kafka on the Shore',
             author: 'Harakuri Murikama',
             age: 61,
