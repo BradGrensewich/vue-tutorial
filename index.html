@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learning Vue</title>
     <script src="https://unpkg.com/vue@3.0.2"></script>
+    <style>
+        .box {
+          padding: 100px 0;
+          width: 400px;
+          text-align: center;
+          background: #ddd;
+          margin: 20px;
+          display: inline-block;
+        }
+      </style>
 </head>
 <body>
     <h1>Hello, Vue :)</h1>
@@ -14,7 +24,7 @@
         <button v-on:click="age--">Decrease age</button>
         <div @click="changeTitle('Norwegian wood')">Change book</div>
         <p v-if="showText">Vue determines if this is shown</p>
-        <button @click="toggleShowText()">
+        <button @click="toggleShowText">
             <span v-if="showText">Hide Text</span>
             <span v-else>Show Text</span>
         </button>
@@ -27,6 +37,15 @@
         <button v-on:click="age--">Decrease age</button>
         <div @click="title='Norwegian Wood'">Change book</div>
         -->
+
+        <br>
+        <!--mouse events
+        if we want to pass in our own arguments, we must explicitly pass in the event object as well
+        it must be the first argument-->
+        <div class="box" @mouseover="handleEvent($event, 'some data')">mouseover (enter)</div>
+        <div class="box" @mouseleave="handleEvent">mouseleave</div>
+        <div class="box" @dblclick="handleEvent">doubleclick</div>
+        <div class="box" @mousemove="handleMouseMove">Position X: {{ x }} Y: {{ y }}</div>
     </div>
     <script src="app.js"></script>
 </body>
