@@ -19,15 +19,20 @@
 <body>
     <h1>Hello, Vue :)</h1>
     <div id="app">
+        <!--attribute binding
+        <a v-bind:href="url">google</a>
+        because v-bind is so common in Vue, we can also do it as so:
+        -->
+        <a :href="url">google</a>
         <div v-if="showText">
             <ul>
                 <li v-for="book in books">
+                    <img v-bind:src="book.img" :alt="book.title">
                     <h3>{{ book.title }}</h3>
                     <p>{{ book.author }}</p>
                 </li>
             </ul>            
-        </div>
-              
+        </div>             
        
         <button @click="toggleShowText">
             <span v-if="showText">Hide Text</span>

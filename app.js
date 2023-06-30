@@ -3,11 +3,12 @@ const app = Vue.createApp({
     //properties inside the object are accesible inside the template
     data() {
         return {
+            url: "https://www.google.com",
             showText: true,
             books: [
-                {title: 'Harry Potter', author: 'Rowling'},
-                {title: 'Hearts in Atlantis', author: 'King'},
-                {title: 'Yellow Flowers on Green Grass', author: 'Gap Anh'}
+                {title: 'Harry Potter', author: 'Rowling', img:'./assets/1.jpg'},
+                {title: 'Hearts in Atlantis', author: 'King', img:'./assets/2.jpg'},
+                {title: 'Yellow Flowers on Green Grass', author: 'Ngap Anh', img:'./assets/3.jpg'}
             ],
             
             title: 'Kafka on the Shore',
