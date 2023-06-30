@@ -49,8 +49,15 @@ const app = Vue.createApp({
         toggleFav(book) {
             book.isFav = ! book.isFav
         }
+    },
+    //computed properties are a way to define data properties in componenets that depend on other
+    //components that are defined in data. it will react to the original data changing
+    computed: {
+        //whatever is returned by a computed function may be accessed in the template
+        filteredBooks() {
+            return this.books.filter((book) => book.isFav)
+        }
     }
-    //template: '<h2>I am the template</h2>'
 })
 
 app.mount('#app')

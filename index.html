@@ -57,6 +57,11 @@
             <span v-if="showText">Hide Text</span>
             <span v-else>Show Text</span>
         </button>
+
+        <h2>Vy's Favorite Books</h2>
+        <li v-for="book in filteredBooks">
+            <h3> {{ book.title }}</h3>
+        </li> 
         
     </div>
     <script src="app.js"></script>
