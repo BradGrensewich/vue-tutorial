@@ -3,67 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning Vue</title>
-    <script src="https://unpkg.com/vue@3.0.2"></script>
-    <style>
-        body{
-            background: #eee;
-            max-width: 960px;
-            margin: 20px auto;
-        }
-        p, h3, ul {
-            margin: 0;
-            padding: 0;
-        }
-        li {
-            list-style-type: none;
-            background: #fff;
-            margin: 20px auto;
-            padding: 10px 20px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        li.fav {
-            background: #ff9ed2;
-            color: white;
-        }
-
-      </style>
+    <title>Vue Basics</title>
 </head>
 <body>
-    <h1>Hello, Vue :)</h1>
     <div id="app">
-        <!--attribute binding
-        <a v-bind:href="url">google</a>
-        because v-bind is so common in Vue, we can also do it as so:
-        -->
-        <a :href="url">google</a>
-        <div v-if="showText">
-            <ul>
-                <!-- dynamic class here. using attribute binind we can pass an
-                object into the class attribute. it has a key value pair where the key is the 
-                condition class applied and will only be applied based on the vlaue of the key -->
-                <li v-for="book in books" :class="{ fav: book.isFav }" @click="toggleFav(book)">
-                    <img :src="book.img" :alt="book.title">
-                    <h3>{{ book.title }}</h3>
-                    <p>{{ book.author }}</p>
-                </li>
-            </ul>            
-        </div>             
-       
-        <button @click="toggleShowText">
-            <span v-if="showText">Hide Text</span>
-            <span v-else>Show Text</span>
-        </button>
-
-        <h2>Vy's Favorite Books</h2>
-        <li v-for="book in filteredBooks">
-            <h3> {{ book.title }}</h3>
-        </li> 
-        
+        {{ greeting }}
     </div>
-    <script src="app.js"></script>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+        //create app takes the 'options' object as a argument
+        //this is filled with all data in functions you intend to use in that app
+        let app = Vue.createApp({
+            data: function() {
+                return {
+                    greeting: 'Hello Vue'
+                }
+            }
+        })
+        app.mount('#app')
+    </script>
+    
 </body>
 </html>
