@@ -6,14 +6,30 @@
     <title>Learning Vue</title>
     <script src="https://unpkg.com/vue@3.0.2"></script>
     <style>
-        .box {
-          padding: 100px 0;
-          width: 400px;
-          text-align: center;
-          background: #ddd;
-          margin: 20px;
-          display: inline-block;
+        body{
+            background: #eee;
+            max-width: 960px;
+            margin: 20px auto;
         }
+        p, h3, ul {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            list-style-type: none;
+            background: #fff;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        li.fav {
+            background: #ff9ed2;
+            color: white;
+        }
+
       </style>
 </head>
 <body>
@@ -26,8 +42,11 @@
         <a :href="url">google</a>
         <div v-if="showText">
             <ul>
-                <li v-for="book in books">
-                    <img v-bind:src="book.img" :alt="book.title">
+                <!-- dynamic class here. using attribute binind we can pass an
+                object into the class attribute. it has a key value pair where the key is the 
+                condition class applied and will only be applied based on the vlaue of the key -->
+                <li v-for="book in books" :class="{ fav: book.isFav }" @click="toggleFav(book)">
+                    <img :src="book.img" :alt="book.title">
                     <h3>{{ book.title }}</h3>
                     <p>{{ book.author }}</p>
                 </li>

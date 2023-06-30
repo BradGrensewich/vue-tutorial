@@ -6,9 +6,9 @@ const app = Vue.createApp({
             url: "https://www.google.com",
             showText: true,
             books: [
-                {title: 'Harry Potter', author: 'Rowling', img:'./assets/1.jpg'},
-                {title: 'Hearts in Atlantis', author: 'King', img:'./assets/2.jpg'},
-                {title: 'Yellow Flowers on Green Grass', author: 'Ngap Anh', img:'./assets/3.jpg'}
+                {title: 'Harry Potter', author: 'Rowling', img:'./assets/1.jpg', isFav: false},
+                {title: 'Hearts in Atlantis', author: 'King', img:'./assets/2.jpg', isFav: false},
+                {title: 'Yellow Flowers on Green Grass', author: 'Ngap Anh', img:'./assets/3.jpg', isFav: false}
             ],
             
             title: 'Kafka on the Shore',
@@ -45,6 +45,9 @@ const app = Vue.createApp({
         handleMouseMove(e) {
             this.x = e.offsetX
             this.y = e.offsetY
+        },
+        toggleFav(book) {
+            book.isFav = ! book.isFav
         }
     }
     //template: '<h2>I am the template</h2>'
