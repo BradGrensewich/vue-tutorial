@@ -4,10 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue Basics</title>
+    <style>
+        .box {
+            background-color: purple;
+            height: 200px;
+            width: 200px;
+        }
+        .box.two {
+            background-color: green;
+        }
+        .box.three {
+            background-color: orange;
+        }
+        /*this is the reccomended pattern for vcloak in vuejs*/
+        [v-cloak] {
+            display: none;
+        }
+
+    </style>
 </head>
 <body>
-    <div id="app">
+    <!--v-cloak is really useful. it takes over styling until the vue app completely loads and then it
+    removes itself from the dom. -->
+    <div id="app" v-cloak>
         {{ greeting }}
+        <!--this directive handles 2 way data binding-->
+        <input v-model="greeting">
+
+        <hr />
+        <div v-if="isVisible" class="box"></div>
+        <div v-else-if="isVisible2" class="box two"></div>
+        <div v-else class="box three"></div>
     </div>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -18,7 +45,9 @@
         let app = Vue.createApp({
             data: function() {
                 return {
-                    greeting: 'Hello Vue'
+                    greeting: 'Hello Vue',
+                    isVisible: false,
+                    isVisible2: true
                 }
             }
         })
