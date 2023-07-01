@@ -16,6 +16,10 @@
         .box.three {
             background-color: orange;
         }
+        input {
+            margin: 10px;
+            display: block;
+        }
         /*this is the reccomended pattern for vcloak in vuejs*/
         [v-cloak] {
             display: none;
@@ -27,9 +31,13 @@
     <!--v-cloak is really useful. it takes over styling until the vue app completely loads and then it
     removes itself from the dom. -->
     <div id="app" v-cloak>
-        {{ greeting }}
-        <!--this directive handles 2 way data binding-->
-        <input @keyup.enter="greet" v-model="greeting">
+        <!--
+            {{ greeting }}
+            this directive handles 2 way data binding
+            <input @keyup.enter="greet" v-model="greeting">
+        -->
+        <login-form />
+        
 
         <hr />
         <button @click="toggleBox">Toggle box</button>
@@ -64,6 +72,37 @@
                 }
 
             } 
+        })
+        //components take 2 arguments: the name that will be used and an options object, same as the main app 
+        //however, a component should define a template as well
+        app.component('login-form', {
+            template: `
+                <h1>{{ title }}</h1>
+                <form @submit.prevent="handleSubmit">
+                    <input type="email" v-model="email"/>
+                    <input type="password" v-model="password"/>
+                    <button>Submit</button>                                        
+                </form>
+            `,
+            data () {
+                return {
+                    title: 'Login Form',
+                    email: '',
+                    password: ''
+                }
+                
+            },
+            methods: {
+                handleSubmit() {
+                    /*
+                    regularly i would have to add the event as an argument and handle it like this
+                    to stop default behaviour. however, vue allows the .prevent shorthand in the form
+                    above to increase efficiency
+                    e.preventDefault()
+                    */
+                    console.log("Email:" + this.email + " Password:" + this.password)
+                }
+            }
         })
         app.mount('#app')
     </script>
