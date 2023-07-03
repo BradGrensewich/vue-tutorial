@@ -76,19 +76,31 @@
         //components take 2 arguments: the name that will be used and an options object, same as the main app 
         //however, a component should define a template as well
         app.component('login-form', {
+            //passing info from the parent component to the cild component using v-bind
+            //v-bind turns regular html attributes into something that can be parsed as js
+            //this allows it to be passed ot the chold component
+            //v-bind is attribute binding and allows for the shortcut :
+            //having passwordLabel and emailLabel defined as varibels is uneccesary, they can be passed as strs
+            //this removes the neccessity of v-bind. see confirmation below
+            //however in vue you're almost always passing a variable using v-bind or :
             template: `
                 <h1>{{ title }}</h1>
                 <form @submit.prevent="handleSubmit">
-                    <input type="email" v-model="email"/>
-                    <input type="password" v-model="password"/>
+                    <custom-input type="email" v-bind:label="emailLabel"/>
+                    <custom-input type="password" :label="passwordLabel"/>
+                    <custom-input type="confirmation" label="Confirm password"/>
                     <button>Submit</button>                                        
                 </form>
             `,
+            //if a vue component uses another component it must be included like so
+            components: ["custom-input"],
             data () {
                 return {
                     title: 'Login Form',
                     email: '',
-                    password: ''
+                    password: '',
+                    emailLabel: 'email',
+                    passwordLabel: 'password'
                 }
                 
             },
@@ -103,6 +115,18 @@
                     console.log("Email:" + this.email + " Password:" + this.password)
                 }
             }
+        })
+        app.component('custom-input', {
+            template: `
+            <label>
+                {{ label }}
+                <input type="text">
+            </label>
+            `,
+            //to recieve data from another component passed from v-bind we need a props object
+            //can be created as an array of strings being a list of all information being passed
+            //this allows the label variable to be used in the template
+            props: ['label']
         })
         app.mount('#app')
     </script>
